@@ -47,13 +47,13 @@ class Tab {
 		let node = this._node;
 		let frame = this._frame;
 
-		node.classList.add('shows')
-		node.classList.remove('hidden');
+		node.classList.add('active')
+		node.classList.remove('inactive');
 
-		frame.classList.add('shows')
-		frame.classList.remove('hidden');
+		frame.classList.add('active')
+		frame.classList.remove('inactive');
 
-		this._status = 'shows';
+		this._status = 'active';
 
 	}
 
@@ -62,19 +62,19 @@ class Tab {
 		let node = this._node;
 		let frame = this._frame;
 
-		node.classList.add('hidden')
-		node.classList.remove('shows');
+		node.classList.add('inactive')
+		node.classList.remove('active');
 
-		frame.classList.add('hidden')
-		frame.classList.remove('shows');
+		frame.classList.add('inactive')
+		frame.classList.remove('active');
 
-		this._status = 'hidden';
+		this._status = 'inactive';
 
 	}
 
 	toggle() {
 
-		if (this._status === 'hidden')
+		if (this._status === 'inactive')
 			this.show();
 
 		else this.hide();

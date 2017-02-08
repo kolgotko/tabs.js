@@ -1,14 +1,14 @@
 .tab {
 
-	&.shows {}
+	&.active {}
 
-	&.hidden {}
+	&.inactive {}
 
 }
 
 .tab-frame {
 
-	&.hidden {
+	&.inactive {
 
 		display: none;
 
