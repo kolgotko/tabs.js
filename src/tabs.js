@@ -14,7 +14,8 @@ class Tabs {
 
     add(selector = ".tab") {
 
-        let nodes = document.querySelectorAll(selector);
+        let nodeList = document.querySelectorAll(selector);
+        let nodes = [].slice.call(nodeList);
 
         nodes.forEach(node => {
 
