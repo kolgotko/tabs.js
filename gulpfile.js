@@ -12,25 +12,25 @@ gulp.task('default', ['build-js', 'build-styles']);
 
 gulp.task('build-js', () => {
 
-	gulp.src('./src/*.js')
-		.pipe(sourcemaps.init())
-		.pipe(babel())
-		.pipe(jsmin())
-		.pipe(concat('tabs.min.js'))
-		.pipe(sourcemaps.write('/maps'))
-		.pipe(gulp.dest('./public/'));
+    gulp.src('./src/*.js')
+        .pipe(sourcemaps.init())
+        .pipe(babel())
+        .pipe(jsmin())
+        .pipe(concat('tabs.min.js'))
+        .pipe(sourcemaps.write('/maps'))
+        .pipe(gulp.dest('./public/'));
 
 });
 
 gulp.task('build-styles', () => {
 
-	gulp.src('./src/*.scss')
-		.pipe(sourcemaps.init())
-		.pipe(sass().on('error', sass.logError))
-		.pipe(autoprefixer())
-		.pipe(cssmin())
-		.pipe(rename({suffix: '.min'}))
-		.pipe(sourcemaps.write('/maps'))
-		.pipe(gulp.dest('./public'));
+    gulp.src('./src/*.scss')
+        .pipe(sourcemaps.init())
+        .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer())
+        .pipe(cssmin())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(sourcemaps.write('/maps'))
+        .pipe(gulp.dest('./public'));
 
 });

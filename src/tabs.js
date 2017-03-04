@@ -4,46 +4,46 @@ import Tab from "tab.js";
 
 class Tabs {
 
-	constructor(selector = null) {
+    constructor(selector = null) {
 
-		this._tabsPool = [];
+        this._tabsPool = [];
 
-		if (selector !== null) this.add(selector);
+        if (selector !== null) this.add(selector);
 
-	}
+    }
 
-	add(selector = ".tab") {
+    add(selector = ".tab") {
 
-		let nodes = document.querySelectorAll(selector);
+        let nodes = document.querySelectorAll(selector);
 
-		nodes.forEach(node => {
+        nodes.forEach(node => {
 
-			let tab = new Tab(node);
+            let tab = new Tab(node);
 
-			this._tabsPool.push(tab);
+            this._tabsPool.push(tab);
 
-			node.addEventListener('click', () => {
+            node.addEventListener('click', () => {
 
-				this.hideAll();
-				tab.show();
+                this.hideAll();
+                tab.show();
 
-			});
+            });
 
-		});
+        });
 
-	}
+    }
 
-	hideAll() {
+    hideAll() {
 
-		let tabs = this._tabsPool;
+        let tabs = this._tabsPool;
 
-		tabs.forEach(tab => {
+        tabs.forEach(tab => {
 
-			tab.hide();
+            tab.hide();
 
-		});
+        });
 
-	}
+    }
 
 }
 

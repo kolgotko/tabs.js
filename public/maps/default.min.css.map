@@ -1,1 +1,1 @@
-{"version":3,"sources":["default.scss"],"names":[],"mappings":"AAQA;EAIE,cAAa,EAEb","file":"../default.min.css","sourcesContent":[".tab {\n\n\t&.active {}\n\n\t&.inactive {}\n\n}\n\n.tab-frame {\n\n\t&.inactive {\n\n\t\tdisplay: none;\n\n\t}\n\n}\n"]}
+{"version":3,"sources":["default.scss"],"names":[],"mappings":"AAQA;EAIQ,cAAa,EAEhB","file":"../default.min.css","sourcesContent":[".tab {\n\n    &.active {}\n\n    &.inactive {}\n\n}\n\n.tab-frame {\n\n    &.inactive {\n\n        display: none;\n\n    }\n\n}\n"]}
