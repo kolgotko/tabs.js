@@ -25,8 +25,21 @@ class Tabs {
 
             node.addEventListener('click', () => {
 
-                this.hideAll();
-                tab.show();
+                let behavior = tab.getBehavior();
+
+                switch (behavior) {
+
+                    case 'toggle':
+                        this.hideAll(tab);
+                        tab.toggle();
+                        break;
+
+                    default:
+                        this.hideAll();
+                        tab.show();
+                        break;
+
+                }
 
             });
 
@@ -34,11 +47,13 @@ class Tabs {
 
     }
 
-    hideAll() {
+    hideAll(except) {
 
         let tabs = this._tabsPool;
 
         tabs.forEach(tab => {
+
+            if (except === tab) return;
 
             tab.hide();
 

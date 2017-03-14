@@ -7,9 +7,11 @@ class Tab {
         this._node = node;
         this._status = null;
         this._frame = null;
+        this._behavior = 'default';
 
         this._extractFrame();
         this._extractStatus();
+        this._extractBehavior();
 
     }
 
@@ -33,6 +35,26 @@ class Tab {
 
         if (status) this.show();
         else this.hide();
+
+    }
+
+    _extractBehavior() {
+
+        let node = this._node;
+        this._behavior = node.dataset['tabBehavior'];
+
+    }
+
+    getBehavior() {
+
+        return this._behavior;
+
+    }
+
+    setBehavior(behavior) {
+
+        this._behavior = behavior;
+        return this;
 
     }
 
