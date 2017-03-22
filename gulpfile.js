@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
-const concat = require('gulp-concat');
+const concat = require('gulp-concat-sourcemap');
 const jsmin = require('gulp-jsmin');
 const cssmin = require('gulp-cssmin');
 const rename = require('gulp-rename');

@@ -20,28 +20,34 @@ class Tabs {
         nodes.forEach(node => {
 
             let tab = new Tab(node);
+            this.addTab(tab);
 
-            this._tabsPool.push(tab);
+        });
 
-            node.addEventListener('click', () => {
+    }
 
-                let behavior = tab.getBehavior();
+    addTab(tab) {
 
-                switch (behavior) {
+        this._tabsPool.push(tab);
+        let node = tab.getNode();
 
-                    case 'toggle':
-                        this.hideAll(tab);
-                        tab.toggle();
-                        break;
+        node.addEventListener('click', () => {
 
-                    default:
-                        this.hideAll();
-                        tab.show();
-                        break;
+            let behavior = tab.getBehavior();
 
-                }
+            switch (behavior) {
 
-            });
+                case 'toggle':
+                    this.hideAll(tab);
+                    tab.toggle();
+                    break;
+
+                default:
+                    this.hideAll();
+                    tab.show();
+                    break;
+
+            }
 
         });
 

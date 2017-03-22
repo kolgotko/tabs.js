@@ -1,5 +1,7 @@
 'use strict';
 
+import EventEmitter from 'event-emitter.js';
+
 class Tab {
 
     constructor(node) {
@@ -8,6 +10,9 @@ class Tab {
         this._status = null;
         this._frame = null;
         this._behavior = 'default';
+        this._events = {
+            'statusChange': new EventEmitter,
+        }
 
         this._extractFrame();
         this._extractStatus();
@@ -68,6 +73,7 @@ class Tab {
 
         let node = this._node;
         let frame = this._frame;
+        let event = this._events['statusChange'];
 
         node.classList.add('active')
         node.classList.remove('inactive');
@@ -76,6 +82,7 @@ class Tab {
         frame.classList.remove('inactive');
 
         this._status = 'active';
+        event.emit(this._status, this);
 
     }
 
@@ -83,6 +90,7 @@ class Tab {
 
         let node = this._node;
         let frame = this._frame;
+        let event = this._events['statusChange'];
 
         node.classList.add('inactive')
         node.classList.remove('active');
@@ -91,6 +99,7 @@ class Tab {
         frame.classList.remove('active');
 
         this._status = 'inactive';
+        event.emit(this._status, this);
 
     }
 
@@ -100,6 +109,31 @@ class Tab {
             this.show();
 
         else this.hide();
+
+    }
+
+    getNode() {
+
+        return this._node;
+
+    }
+
+    isActive() {
+
+        return this._status === 'active';
+
+    }
+
+    on (eventName, handler) {
+
+        let events = this._events;
+
+        if (events[eventName]) {
+
+            let emitter = events[eventName];
+            emitter.push(handler);
+
+        }
 
     }
 
