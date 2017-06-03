@@ -29,27 +29,28 @@ class Tabs {
     addTab(tab) {
 
         this._tabsPool.push(tab);
-        let node = tab.getNode();
 
-        node.addEventListener('click', () => {
+        let context = {
+            tab: tab,
+            group: this,
+        };
 
-            let behavior = tab.getBehavior();
+        tab.setClickHandler(this._clickHandler.bind(context));
 
-            switch (behavior) {
+    }
 
-                case 'toggle':
-                    this.hideAll(tab);
-                    tab.toggle();
-                    break;
+    rmTab(tab) {
 
-                default:
-                    this.hideAll();
-                    tab.show();
-                    break;
+        let pool = this._tabsPool;
+        let index = pool.indexOf(tab);
 
-            }
+        if (index === -1) return false;
 
-        });
+        delete(pool[index]);
+
+        tab.clearClickHandler();
+
+        return true;
 
     }
 
@@ -64,6 +65,28 @@ class Tabs {
             tab.hide();
 
         });
+
+    }
+
+    _clickHandler() {
+
+        let tab = this.tab;
+        let group = this.group;
+        let behavior = tab.getBehavior();
+
+        switch (behavior) {
+
+            case 'toggle':
+                group.hideAll(tab);
+                tab.toggle();
+                break;
+
+            default:
+                group.hideAll();
+                tab.show();
+                break;
+
+        }
 
     }
 

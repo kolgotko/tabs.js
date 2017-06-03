@@ -10,6 +10,7 @@ class Tab {
         this._status = null;
         this._frame = null;
         this._behavior = 'default';
+        this._clickHandler = null;
         this._events = {
             'statusChange': new EventEmitter,
         }
@@ -137,6 +138,41 @@ class Tab {
 
     }
 
+    setClickHandler(handler) {
+
+        if (this._clickHandlerl) {
+
+            this.clearClickHandler();
+
+        }
+
+        let node = this._node;
+        this._clickHandler = handler;
+        node.addEventListener('click', handler);
+
+    }
+
+    getClickHandler() {
+
+        return this._clickHandlerl;
+
+    }
+
+    clearClickHandler() {
+
+        let node = this._node;
+        let handler = this._clickHandler;
+
+        if (handler) {
+
+            node.removeEventListener('click', handler);
+
+        }
+
+    }
+
 }
+
+window.Tab = Tab;
 
 export default Tab;
