@@ -19,6 +19,68 @@ class Tab {
         this._extractStatus();
         this._extractBehavior();
 
+        this._tabWatch();
+        this._frameWatch();
+
+    }
+
+    _tabWatch() {
+
+        let node = this._node;
+
+        let watcher = new MutationObserver(mutations => {
+
+            mutations.forEach(mut => {
+
+                let clickHandler = this._clickHandler;
+                let removed = [].slice.call(mut.removedNodes);
+                let added = [].slice.call(mut.addedNodes);
+
+                if (removed.indexOf(node) === -1) return false;
+                if (added.length === 0) return false;
+
+                this.clearClickHandler();
+                this._node = added[0];
+                this.setClickHandler(this._clickHandler);
+
+            });
+
+        });
+
+        watcher.observe(node.parentNode, {
+            childList: true,
+        });
+
+    }
+
+    _frameWatch() {
+
+        let frame = this._frame;
+
+        let watcher = new MutationObserver(mutations => {
+
+            mutations.forEach(mut => {
+
+                let removed = [].slice.call(mut.removedNodes);
+                let added = [].slice.call(mut.addedNodes);
+
+                if (removed.indexOf(frame) === -1) return false;
+                if (added.length === 0) return false;
+
+                this._frame = added[0];
+
+                if (this._status === 'inactive') this.hide();
+
+                else this.show();
+
+            });
+
+        });
+
+        watcher.observe(frame.parentNode, {
+            childList: true,
+        });
+
     }
 
     _extractFrame() {
