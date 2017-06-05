@@ -30,6 +30,8 @@ class Tab {
 
         let watcher = new MutationObserver(mutations => {
 
+            let node = this._node;
+
             mutations.forEach(mut => {
 
                 let clickHandler = this._clickHandler;
@@ -58,6 +60,8 @@ class Tab {
         let frame = this._frame;
 
         let watcher = new MutationObserver(mutations => {
+
+            let frame = this._frame;
 
             mutations.forEach(mut => {
 
